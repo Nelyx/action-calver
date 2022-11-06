@@ -18,5 +18,5 @@ jobs:
         with:
           default_branch: 'main'
       # Use the output from the `calver` step
-      - name: Get the output time
+      - name: Get the output version
         run: echo "The version was ${{ steps.calver.outputs.package_version }}"
