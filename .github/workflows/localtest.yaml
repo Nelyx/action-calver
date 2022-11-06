@@ -1,19 +1,22 @@
-on: [push]
- 
+on:
+  push:
+    branches:
+      - main
+
 jobs:
-  hello_world_job:
+  build:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Just for local running
     steps:
       # To use this repository's private action,
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Hello world action step
+      - name: Set Version
         uses: ./ # Uses an action in the root directory
-        id: hello
+        id: calver
         with:
-          who-to-greet: 'Mona the Octocat'
-      # Use the output from the `hello` step
+          default_branch: 'main'
+      # Use the output from the `calver` step
       - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+        run: echo "The version was ${{ steps.calver.outputs.package_version }}"

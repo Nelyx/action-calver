@@ -1,13 +1,20 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Set Calver'
+description: 'Calculate CalVer version and set PACKAGE_VERSION environment variables.'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
+  version_prefix:  # id of input
+    default: ''
+    required: false
+    description: 'Version string prefix'
+  default_branch:
+    default: 'refs/heads/main'
+    required: false
+    description: 'Name of the default branch'
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  package_version: # id of output
+    description: 'The version we determined'
 runs:
   using: 'node16'
-  main: 'index.js'
+  main: 'src/index.js'
+branding:
+  icon: bookmark
+  color: red

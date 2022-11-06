@@ -1,18 +1,18 @@
-# Hello world javascript action
+# Set Calver javascript action
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+This action determins a CalVer version number based on a UTC date and the branch name. The version is stored in the environment variable `PACKAGE_VERSION`.
 
 ## Inputs
 
-### `who-to-greet`
+### `version_prefix`
 
-**Required** The name of the person to greet. Default `"World"`.
+String to prefix the version string with. Default `""`.
 
 ## Outputs
 
-### `time`
+### `package_version`
 
-The time we greeted you.
+The determined version string. Also stored in the environment variable `PACKAGE_VERSION`.  
 
 ## Example usage
 
