@@ -16,7 +16,7 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: calver
         with:
-          default_branch: 'main'
+          default_branch: 'refs/heads/main'
       # Use the output from the `calver` step
       - name: Get the output version
         run: echo "The version was ${{ steps.calver.outputs.package_version }}"
