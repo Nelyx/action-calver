@@ -2,22 +2,22 @@
   "name": "github-action-calver",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",  
+  "main": "index.js",
   "scripts": {
     "action": "set INPUT_projectFilter=**/*.csproj&&set INPUT_version=0.1.0-feature-c0016&&set INPUT_assemblyVersion=0.1.0.0&&set INPUT_fileVersion=0.1.0&&set INPUT_informationalVersion=0.1.0-feature-CreateAction.16+Branch.feature-CreateAction.Sha.3a2139d11710900ea10c95b825600560f6388c64&&node --inspect-brk src/index.js",
     "test": "jest --testMatch **/*.tests.js --coverage=true",
-    "package": "ncc build src/index.js -o dist"
+    "package": "node ./node_modules/@vercel/ncc/dist/ncc/cli.js build src/index.js -o dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  
   "dependencies": {
     "@actions/core": "^1.10.0",
-    "@actions/github": "^5.1.1"
+    "@actions/github": "^5.1.1",
+    "dayjs": "^1.11.6"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.22.3",
+    "@vercel/ncc": "^0.34.0",
     "eslint": "^7.32.0",
     "jest": "^27.0.6"
   }

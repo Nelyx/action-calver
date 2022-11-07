@@ -17,6 +17,8 @@ jobs:
         id: calver
         with:
           default_branch: 'refs/heads/main'
+          format: "YY.M.D"
+          version_prefix: ""
       # Use the output from the `calver` step
       - name: Get the output version
         run: echo "The version was ${{ steps.calver.outputs.package_version }}"

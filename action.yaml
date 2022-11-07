@@ -1,5 +1,5 @@
 name: 'Set Calver'
-description: 'Calculate CalVer version and set PACKAGE_VERSION environment variables.'
+description: 'Calculate Calver version and set PACKAGE_VERSION environment variables.'
 inputs:
   version_prefix:  # id of input
     default: ''
@@ -9,12 +9,16 @@ inputs:
     default: 'refs/heads/main'
     required: false
     description: 'Name of the default branch'
+  format:
+    default: "YY.M.D"
+    required: true
+    description: "Day.js compatible date format string"
 outputs:
   package_version: # id of output
     description: 'The version we determined'
 runs:
   using: 'node16'
-  main: 'src/index.js'
+  main: 'dist/index.js'
 branding:
   icon: bookmark
   color: red

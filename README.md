@@ -1,6 +1,6 @@
 # Set Calver javascript action
 
-This action determins a CalVer version number based on a UTC date and the branch name. The version is stored in the environment variable `PACKAGE_VERSION`.
+This action determins a Calver version number based on a UTC date and the branch name. The version is stored in the environment variable `PACKAGE_VERSION`.
 
 ## Inputs
 
