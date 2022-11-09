@@ -14,11 +14,14 @@ jobs:
         uses: actions/checkout@v3
       - name: Set Version
         uses: ./ # Uses an action in the root directory
-        id: calver
+        id: setcalver
         with:
           default_branch: 'refs/heads/main'
           format: "YY.M.D"
           version_prefix: ""
       # Use the output from the `calver` step
       - name: Get the output version
-        run: echo "The version was ${{ steps.calver.outputs.package_version }}"
+        run: |
+          echo "The outputs values are ${{ steps.setcalver.outputspackage_version }}"
+          echo "The version was ${{ steps.setcalver.outputs.package_version }}"
+          

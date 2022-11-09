@@ -9520,41 +9520,59 @@ function wrappy (fn, cb) {
 const dayjs = __nccwpck_require__(7401)
 
 class Calver {
-  async makeVersion(date, options)
-  {
-    if (!date) {
+  get VersionShort() {
+    return this._versionShort;
+  }
+  get VersionFull() {
+    return this._versionFull;
+  }
+  get PrereleseSuffix() {
+    return this._prereleaseSuffix;
+  }
+  constructor(_date, _options) {
+    if (!_date) {
       throw { message: 'No date has been provided.' };
     }
-    if (!options) {
+    if (!_options) {
       throw { message: 'No options have been provided.' };
     }
-    if (!options.format) {
+    if (!_options.format) {
       throw { message: 'No format string has been provided.' };
     }
-    
-    // get date parts
-    //const dateString = new Date(date).toUTCString();
-    //const y = dateString.slice(2, 4);
-    //const month = dateString.slice(5, 7);
-    //const day = dateString.slice(8, 10);
-    
-    const dateString = dayjs(date).format(options.dateFormat);
+    this._date = _date;
+    this._options = _options;
 
+    this._versionShort = "";
+    this._versionFull = "";
+    this._prereleaseSuffix = "";
+
+  }
+  async makeVersion()
+  {
+    const _date = this._date;
+    const _options = this._options;
+    // get date parts
+
+    const dateString = dayjs(_date).format(_options.format);
     //determine prerelease suffix
     let suffix = "";
-    if (options.currentRef != options.defaultBranch){
-      suffix = "-" + options.currentRef
+    if (_options.currentRef != _options.defaultBranch){
+      suffix = _options.currentRef
         .split("/")[2] // take the third token from the branch ref
         .replace(/[^a-z0-9]/gi, '-') // replace nonalphanumeric chatacters with '-'
         .substr(0,20); //take that first 20 characters
     };
 
     // concatenate version parts
-    let version = options.prefix;
-    version += dateString;
-    version += "." + options.buildNumber;
-    version += suffix;
-    return version
+    let vs = _options.prefix;
+    vs += dateString;
+    vs += "." + _options.buildNumber;
+
+    let vf = vs + (!suffix ? "" : "-" + suffix);
+    
+    this._versionShort = vs;
+    this._versionFull = vf; 
+    this._prereleaseSuffix = suffix;
   }
 }
 module.exports = Calver;
@@ -9753,11 +9771,11 @@ async function run() {
       format: core.getInput('format'),
     };
     const dateValue = new Date().toUTCString();
-    const calver = new Calver();
-    const v = await calver.makeVersion(dateValue, options)
+    const calver = new Calver(dateValue, options);
+    await calver.makeVersion()
     
-    core.exportVariable('PACKAGE_VERSION', v.toString())
-    core.setOutput('package_version', v.toString())
+    core.exportVariable('PACKAGE_VERSION', calver.VersionFull)
+    core.setOutput('package_version', calver.VersionFull)
     
 
   } catch (error) {

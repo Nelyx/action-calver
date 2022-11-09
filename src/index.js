@@ -13,11 +13,11 @@ async function run() {
       format: core.getInput('format'),
     };
     const dateValue = new Date().toUTCString();
-    const calver = new Calver();
-    const v = await calver.makeVersion(dateValue, options)
+    const calver = new Calver(dateValue, options);
+    await calver.makeVersion()
     
-    core.exportVariable('PACKAGE_VERSION', v.toString())
-    core.setOutput('package_version', v.toString())
+    core.exportVariable('PACKAGE_VERSION', calver.VersionFull)
+    core.setOutput('package_version', calver.VersionFull)
     
 
   } catch (error) {
