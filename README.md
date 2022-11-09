@@ -25,7 +25,11 @@ The determined version string. Also stored in the environment variable `PACKAGE_
 ## Example usage
 
 ```yaml
-uses: actions/hello-world-javascript-action@v1.1
-with:
-  who-to-greet: 'Mona the Octocat'
+      - name: Set Calver Version
+        uses: Nelyx/action-calver@v1.0.0
+        id: setcalver
+        with:
+          default_branch: 'refs/heads/main'
+          format: "YY.M.D"
+          version_prefix: ""
 ```
