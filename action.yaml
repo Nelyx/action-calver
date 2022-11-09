@@ -1,7 +1,7 @@
-name: 'Set Calver'
+name: 'Set Calver Version'
 description: 'Calculate Calver version and set PACKAGE_VERSION environment variables.'
 inputs:
-  version_prefix:  # id of input
+  version_prefix:
     default: ''
     required: false
     description: 'Version string prefix'
@@ -14,7 +14,7 @@ inputs:
     required: true
     description: "Day.js compatible date format string"
 outputs:
-  package_version: # id of output
+  package_version:
     description: 'The version we determined'
 runs:
   using: 'node16'
