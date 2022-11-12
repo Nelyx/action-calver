@@ -17,11 +17,10 @@ jobs:
         id: setcalver
         with:
           default_branch: 'refs/heads/main'
-          format: "YY.M.D"
-          version_prefix: ""
+          format: 'YY.M.D'
+          version_prefix: 'v'
       # Use the output from the `calver` step
       - name: Get the output version
         run: |
           echo "The outputs values are ${{ steps.setcalver.outputspackage_version }}"
           echo "The version was ${{ steps.setcalver.outputs.package_version }}"
-          
