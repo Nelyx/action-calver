@@ -1,3 +1,5 @@
 {
-    "jest.jestCommandLine": "npm test --"
+  "jest.jestCommandLine": "npm test --",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
 }
