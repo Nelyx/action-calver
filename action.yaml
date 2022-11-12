@@ -10,12 +10,14 @@ inputs:
     required: false
     description: 'Name of the default branch'
   format:
-    default: "YY.M.D"
+    default: 'YY.M.D'
     required: true
-    description: "Day.js compatible date format string"
+    description: 'Day.js compatible date format string'
 outputs:
   package_version:
     description: 'The version we determined'
+  package_suffix:
+    description: 'If the action is triggered on a non-default branch its assumed to be a prerelease and the suffix will be the branch name. Otherwise it will be an empty string.'
 runs:
   using: 'node16'
   main: 'dist/index.js'

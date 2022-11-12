@@ -1,4 +1,4 @@
-const dayjs = require('dayjs')
+const dayjs = require('dayjs');
 
 class Calver {
   get VersionShort() {
@@ -23,36 +23,34 @@ class Calver {
     this._date = _date;
     this._options = _options;
 
-    this._versionShort = "";
-    this._versionFull = "";
-    this._prereleaseSuffix = "";
-
+    this._versionShort = '';
+    this._versionFull = '';
+    this._prereleaseSuffix = '';
   }
-  async makeVersion()
-  {
+  async makeVersion() {
     const _date = this._date;
     const _options = this._options;
     // get date parts
 
     const dateString = dayjs(_date).format(_options.format);
     //determine prerelease suffix
-    let suffix = "";
-    if (_options.currentRef != _options.defaultBranch){
+    let suffix = '';
+    if (_options.currentRef != _options.defaultBranch) {
       suffix = _options.currentRef
-        .split("/")[2] // take the third token from the branch ref
+        .split('/')[2] // take the third token from the branch ref
         .replace(/[^a-z0-9]/gi, '-') // replace nonalphanumeric chatacters with '-'
-        .substr(0,20); //take that first 20 characters
-    };
+        .substr(0, 20); //take that first 20 characters
+    }
 
     // concatenate version parts
     let vs = _options.prefix;
     vs += dateString;
-    vs += "." + _options.buildNumber;
+    vs += '.' + _options.buildNumber;
 
-    let vf = vs + (!suffix ? "" : "-" + suffix);
-    
+    let vf = vs + (!suffix ? '' : '-' + suffix);
+
     this._versionShort = vs;
-    this._versionFull = vf; 
+    this._versionFull = vf;
     this._prereleaseSuffix = suffix;
   }
 }
