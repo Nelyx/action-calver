@@ -1,6 +1,6 @@
 # Set Calver javascript action
 
-This action determins a Calver version number based on a UTC date and the branch name. The version is stored in the environment variables `PACKAGE_VERSION` and `PACKAGE_SUFFIX`.
+This action determines a Calver version number based on a UTC date and the branch name. The version is stored in the environment variables `PACKAGE_VERSION` and `PACKAGE_SUFFIX`.
 
 ## Inputs
 
@@ -10,7 +10,7 @@ String to prefix the version string with. Default `""`.
 
 ### `default_branch`
 
-Name of the default branch. For builds from other branches, the branchname is used as a pre-release suffix in the environment variable and output. Default `refs/heads/main`.
+Name of the default branch. For builds from other branches, the branch name is used as a pre-release suffix in the environment variable and output. Default `refs/heads/main`.
 
 ### `format`
 
